@@ -7,8 +7,13 @@ Names
 You can provide a table with the names and the contact of all of the participants as follows:
 
 Allison Walker  allisonraynor8@gmail.com
+<<<<<<< HEAD
 David Ordonez Vivar YOUREMAIL
 Christian Siever  christian_siever@web.de
+=======
+David Ordonez Vivar ordonezviviardavid@gmail.com
+Christian Siever  YOUREMAIL
+>>>>>>> 462676d135a6a68243508458f2d7d227711b0cb7
 It is important to add your contact name as other people could use your code and may require any help.
 
 Project Description / Abstract
