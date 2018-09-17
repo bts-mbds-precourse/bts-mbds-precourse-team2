@@ -3,8 +3,6 @@
 
 Welcome to team 2's README for the pre-course project. Allison, David and Christian are happy to guide you through some information and tips pertaining to our dataset. 
 
-whaaaaaat
-
 # Names
 
 |         Name        |            Email            |
