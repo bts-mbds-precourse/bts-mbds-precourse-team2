@@ -5,19 +5,11 @@ Welcome to team 2's README for the pre-course project. Allison, David and Christ
 
 # Names
 
-You can provide a table with the names and the contact of all of the participants as follows:
-
-| Name | Email |
-
---- | --- 
-
-| Allison Walker | allisonraynor8@gmail.com |
-
-| Christian Siever | christian_siever@web.de |
-
-| David Ordonez Vivar | ordonezviviardavid@gmail.com |
-
-It is important to add your contact name as other people could use your code and may require any help.
+|         Name        |            Email            |
+|:-------------------:|:---------------------------:|
+|    Allison Walker   |   allisonraynor8@gmail.com  |
+|   Christian Siever  |   christian_siever@web.de   |
+| David Ordonez Vivar | ordonezvivardavid@gmail.com |
 
 # Project Description / Abstract
 
