@@ -1,11 +1,9 @@
 
 # Master in Big Data Solutions Guide Repository
 
-Welcome to the guide repository. In this README you have some tips and all the different sections that your repo's README shoud contain.
+Welcome to team 2's README for the pre-course project. Allison, David and Christian are happy to guide you through some information and tips pertaining to our dataset. 
 
 # Names
-
-You can provide a table with the names and the contact of all of the participants as follows:
 
 | Allison Walker      | allisonraynor8@gmail.com      |
 
