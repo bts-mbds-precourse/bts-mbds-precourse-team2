@@ -1,7 +1,7 @@
 import csv
 
 file = open('GlobalLandTemperaturesByCity.csv', 'r')
-#This is a testing comment
+#This is a testing comment...
 with open('GlobalLandTemperaturesByCity.csv') as csvfile:
     """sniffer=csv.Sniffer()
     dialect=sniffer.sniff(csvfile.read(2000))"""
