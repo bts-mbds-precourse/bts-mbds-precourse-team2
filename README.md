@@ -5,13 +5,9 @@ Welcome to team 2's README for the pre-course project. Allison, David and Christ
 
 # Names
 
-<<<<<<< HEAD
 You can provide a table with the names and the contact of all of the participants as follows:
 
-Name | Email
-=======
-| Allison Walker      | allisonraynor8@gmail.com      |
->>>>>>> b48f4263ace7bf1361c757db004fb56870ba3688
+| Name | Email |
 
 --- | --- 
 
