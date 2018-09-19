@@ -1,10 +1,18 @@
 import csv
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
 """
 with open('./DataSet/GlobalLandTemperaturesByCity.csv') as csvfile:
+
+
+file = open('GlobalLandTemperaturesByCity.csv', 'r')
+#This is a testing comment...
+with open('GlobalLandTemperaturesByCity.csv') as csvfile:
+    """sniffer=csv.Sniffer()
+    dialect=sniffer.sniff(csvfile.read(2000))"""
     readCSV = csv.reader(csvfile,delimiter=',', quoting=csv.QUOTE_NONE)
     dt = []
     AverageTemperature = []
@@ -34,6 +42,7 @@ with open('./DataSet/GlobalLandTemperaturesByCity.csv') as csvfile:
         Longitude.append(longitud)
 
     print(dt)
+
 
 """
 
