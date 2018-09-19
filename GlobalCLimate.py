@@ -1,5 +1,7 @@
 import csv
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 """
 with open('./DataSet/GlobalLandTemperaturesByCity.csv') as csvfile:
@@ -36,10 +38,18 @@ with open('./DataSet/GlobalLandTemperaturesByCity.csv') as csvfile:
 """
 
 data = pd.read_csv('./DataSet/GlobalLandTemperaturesByCity.csv')
-#print(data)
+# print(data)
 
-df = pd.DataFrame(data, columns = ['Date', 'MeanTemp', 'City', 'Country',])
-#print(df)
+df = pd.DataFrame(data, columns=['dt', 'AverageTemperature', "City", "Country"])
+rd = df.rename(columns={'dt': "Date", 'AverageTemperature': "AvgTemp", "City": 'City', "Country": 'Country'})
+# print(df)
 
-#df = pd.read_csv('./DataSet/GlobalLandTemperaturesByCity.csv', na_values=[' '], names=['dt', 'AverageTemperature', 'City', 'Country'])
-Aachen = df.loc[df['City'] == 'Aachen']
+# df = pd.read_csv('./DataSet/GlobalLandTemperaturesByCity.csv', na_values=[' '], names=['dt', 'AverageTemperature', 'City', 'Country'])
+A_Coruña = rd.loc[rd['City'] == 'A Coruña']
+A_Coruña.to_datetime(rd)
+
+if rd.Dates.str.endswith('')
+
+#rd.plot(x='Date', y='AvgTemp', style='o')
+#plt.show()
+print(A_Coruña)
