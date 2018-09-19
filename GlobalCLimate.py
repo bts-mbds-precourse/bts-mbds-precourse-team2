@@ -1,10 +1,12 @@
 import csv
 
-file = open('GlobalLandTemperaturesByCity.csv', 'r')
+"""""
+
 #This is a testing comment...
 with open('GlobalLandTemperaturesByCity.csv') as csvfile:
     """sniffer=csv.Sniffer()
     dialect=sniffer.sniff(csvfile.read(2000))"""
+
     readCSV = csv.reader(csvfile,delimiter=',', quoting=csv.QUOTE_NONE)
     dt = []
     AverageTemperature = []
@@ -33,6 +35,31 @@ with open('GlobalLandTemperaturesByCity.csv') as csvfile:
         Latitude.append(latitud)
         Longitude.append(longitud)
 
+    print(dt)"""
+
+import pandas as pd
+
+data = pd.read_csv('./DataSet/GlobalLandTemperaturesByCity.csv')
+
+# print(data)
+
+df = pd.DataFrame(data, columns=['dt', 'AverageTemperature', 'City', 'Country'])
+rd = df.rename(columns={'dt': 'Date', 'AverageTemperature': 'AvgTemp', 'City': 'City', 'Country': 'Country'})
+#print(rd['Date'])
+
+# df = pd.read_csv('./DataSet/GlobalLandTemperaturesByCity.csv', na_values=[' '], names=['dt', 'AverageTemperature', 'City', 'Country'])
+# A Coruña = rd.loc[rd['City'] == 'A Coruña']
+# print('A Coruña')
+
+
+
+import datetime
+pd.to_datetime(rd['Date'])
+print(rd.dtypes)
+
+import matplotlib.pyplot as plt
+
     print(dt)
+
 
 
