@@ -1,8 +1,12 @@
 import csv
 
 """""
+
 #This is a testing comment...
-with open('./DataSet/GlobalLandTemperaturesByCity.csv') as csvfile:
+with open('GlobalLandTemperaturesByCity.csv') as csvfile:
+    """sniffer=csv.Sniffer()
+    dialect=sniffer.sniff(csvfile.read(2000))"""
+
     readCSV = csv.reader(csvfile,delimiter=',', quoting=csv.QUOTE_NONE)
     dt = []
     AverageTemperature = []
@@ -54,3 +58,8 @@ pd.to_datetime(rd['Date'])
 print(rd.dtypes)
 
 import matplotlib.pyplot as plt
+
+    print(dt)
+
+
+
