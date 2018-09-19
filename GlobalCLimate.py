@@ -11,8 +11,10 @@ with open('./DataSet/GlobalLandTemperaturesByCity.csv') as csvfile:
 file = open('GlobalLandTemperaturesByCity.csv', 'r')
 #This is a testing comment...
 with open('GlobalLandTemperaturesByCity.csv') as csvfile:
-    sniffer=csv.Sniffer()
-    dialect=sniffer.sniff(csvfile.read(2000))
+
+    """sniffer=csv.Sniffer()
+    dialect=sniffer.sniff(csvfile.read(2000))"""
+
     readCSV = csv.reader(csvfile,delimiter=',', quoting=csv.QUOTE_NONE)
     dt = []
     AverageTemperature = []
@@ -46,12 +48,13 @@ with open('GlobalLandTemperaturesByCity.csv') as csvfile:
 
 """
 
-data = pd.read_csv('.\DataSet\GlobalLandTemperaturesByCity.csv')
+data = pd.read_csv('./DataSet/GlobalLandTemperaturesByCity.csv')
 # print(data)
 
 df = pd.DataFrame(data, columns=['dt', 'AverageTemperature', "City", "Country"])
 rd = df.rename(columns={'dt': "Date", 'AverageTemperature': "AvgTemp", "City": 'City', "Country": 'Country'})
 # print(df)
+
 
 # df = pd.read_csv('.\DataSet\GlobalLandTemperaturesByCity.csv', na_values=[' '], names=['dt', 'AverageTemperature', 'City', 'Country'])
 Aachen = rd.loc[rd['City'] == 'Aachen']
@@ -72,3 +75,4 @@ print(rd)
 #pd.concat([rd.drop('Date', axis = 1),
 #(rd.time.str.split("-").str[:3].apply(pd.Series)
 #.rename(columns={0:'year', 1:'month', 2:'day'}))], axis = 1)
+

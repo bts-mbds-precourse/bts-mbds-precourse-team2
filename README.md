@@ -13,7 +13,7 @@ Welcome to team 2's README for the pre-course project. Allison, David and Christ
 
 # Project Description / Abstract
 
-Few lines explaining what your project consist on is always useful, so people don't have to read the code to understand what you are doing.
+Climate change matter.
 
 # Dataset
 
