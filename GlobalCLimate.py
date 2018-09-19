@@ -11,10 +11,8 @@ with open('./DataSet/GlobalLandTemperaturesByCity.csv') as csvfile:
 file = open('GlobalLandTemperaturesByCity.csv', 'r')
 #This is a testing comment...
 with open('GlobalLandTemperaturesByCity.csv') as csvfile:
-
-    """sniffer=csv.Sniffer()
-    dialect=sniffer.sniff(csvfile.read(2000))"""
-
+    sniffer=csv.Sniffer()
+    dialect=sniffer.sniff(csvfile.read(2000))
     readCSV = csv.reader(csvfile,delimiter=',', quoting=csv.QUOTE_NONE)
     dt = []
     AverageTemperature = []
@@ -48,13 +46,12 @@ with open('GlobalLandTemperaturesByCity.csv') as csvfile:
 
 """
 
-data = pd.read_csv('./DataSet/GlobalLandTemperaturesByCity.csv')
+data = pd.read_csv('.\DataSet\GlobalLandTemperaturesByCity.csv')
 # print(data)
 
 df = pd.DataFrame(data, columns=['dt', 'AverageTemperature', "City", "Country"])
 rd = df.rename(columns={'dt': "Date", 'AverageTemperature': "AvgTemp", "City": 'City', "Country": 'Country'})
 # print(df)
-
 
 # df = pd.read_csv('.\DataSet\GlobalLandTemperaturesByCity.csv', na_values=[' '], names=['dt', 'AverageTemperature', 'City', 'Country'])
 Aachen = rd.loc[rd['City'] == 'Aachen']
@@ -69,10 +66,20 @@ rd["day"] = rd['Date'].map(lambda x: x.day)
 rd["month"] = rd['Date'].map(lambda x: x.month)
 rd["year"] = rd['Date'].map(lambda x: x.year)
 
+
+
+def get_season(rd['month']):
+    for x in rd['month']:
+        if x == 12 or x == 1 or x == 2:
+             return 1 # winter
+        elif x == 3 or x == 4 or x == 5:
+             return 2 # spring
+        elif x == 6 or x == 7 or x == 8:
+             return 3 # summer
+        elif x == 9 or x == 10 or x == 11:
+             return 4 # autumn
+
+rd['season'] = get_season(rd['month'])
+
 print(rd)
-
-
-#pd.concat([rd.drop('Date', axis = 1),
-#(rd.time.str.split("-").str[:3].apply(pd.Series)
-#.rename(columns={0:'year', 1:'month', 2:'day'}))], axis = 1)
 
