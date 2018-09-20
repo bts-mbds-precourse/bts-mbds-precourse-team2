@@ -46,7 +46,7 @@ with open('GlobalLandTemperaturesByCity.csv') as csvfile:
 
 """
 
-data = pd.read_csv('.\DataSet\GlobalLandTemperaturesByCity.csv')
+data = pd.read_csv('./DataSet/ByCityShort.csv')
 # print(data)
 
 df = pd.DataFrame(data, columns=['dt', 'AverageTemperature', "City", "Country"])
@@ -60,26 +60,42 @@ Aachen = rd.loc[rd['City'] == 'Aachen']
 #rd.plot(x='Date', y='AvgTemp', style='o')
 #plt.show()
 
-rd["Date"] = pd.to_datetime(rd["Date"])
+Aachen["Date"] = pd.to_datetime(Aachen["Date"])
 
-rd["day"] = rd['Date'].map(lambda x: x.day)
-rd["month"] = rd['Date'].map(lambda x: x.month)
-rd["year"] = rd['Date'].map(lambda x: x.year)
+Aachen["day"] = Aachen['Date'].map(lambda x: x.day)
+Aachen["month"] = Aachen['Date'].map(lambda x: x.month)
+Aachen["year"] = Aachen['Date'].map(lambda x: x.year)
 
 
+def season_finder(month):
 
-def get_season(rd['month']):
-    for x in rd['month']:
-        if x == 12 or x == 1 or x == 2:
-             return 1 # winter
-        elif x == 3 or x == 4 or x == 5:
-             return 2 # spring
-        elif x == 6 or x == 7 or x == 8:
-             return 3 # summer
-        elif x == 9 or x == 10 or x == 11:
-             return 4 # autumn
+    season = []
+    for x in month:
+        if x == 1 or x == 2 or x == 3:
+            season.append("1")
+        elif x == 4 or x == 5 or x == 6:
+            season.append("2")
+        elif x == 7 or x == 8 or x == 9:
+            season.append("3")
+        elif x == 10 or x == 11 or x == 12:
+            season.append("4")
 
-rd['season'] = get_season(rd['month'])
+    Aachen["season"] = season
 
-print(rd)
+season_finder(Aachen['month'])
+
+Aachen_winter = Aachen.loc[Aachen['season'] == '1']
+#Aachen_winter.plot(x='Date', y='AvgTemp', style='.')
+
+Aachen_winter_mean = Aachen_winter.groupby(["year"]).mean()
+print(Aachen_winter_mean)
+
+
+#Aachen_winter_1950 = Aachen_winter.loc[Aachen_winter['year'] == range(1950,2000)]
+#Aachen_winter_1950.plot(x='Date', y='AvgTemp', style='o')
+
+plt.show()
+
+
+#print(rd)
 

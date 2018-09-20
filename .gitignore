@@ -4,3 +4,9 @@ DataSet/GlobalLandTemperaturesByState.csv
 DataSet/GlobalLandTemperaturesByMajorCity.csv
 DataSet/GlobalLandTemperaturesByCountry.csv
 DataSet/GlobalLandTemperaturesByCity.csv
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/bts-mbds-precourse-team2.iml
+.DS_Store
