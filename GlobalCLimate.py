@@ -88,6 +88,13 @@ Aachen_winter = Aachen.loc[Aachen['season'] == '1']
 #Aachen_winter.plot(x='Date', y='AvgTemp', style='.')
 
 Aachen_winter_mean = Aachen_winter.groupby(["year"]).mean()
+
+Aachen_winter_mean["year"]=Aachen_winter_mean.index
+Aachen_winter_mean.plot(x='year', y='AvgTemp', style='.')
+Aachen_winter_mean.index = range(len(Aachen_winter_mean))
+
+
+
 print(Aachen_winter_mean)
 
 
