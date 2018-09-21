@@ -46,40 +46,114 @@ with open('GlobalLandTemperaturesByCity.csv') as csvfile:
 
 """
 
-data = pd.read_csv('.\DataSet\GlobalLandTemperaturesByCity.csv')
-# print(data)
+
+data = pd.read_csv('./DataSet/ByCityShort.csv')
+#print(data)
+
 
 df = pd.DataFrame(data, columns=['dt', 'AverageTemperature', "City", "Country"])
 rd = df.rename(columns={'dt': "Date", 'AverageTemperature': "AvgTemp", "City": 'City', "Country": 'Country'})
-# print(df)
+#print(df)
 
-# df = pd.read_csv('.\DataSet\GlobalLandTemperaturesByCity.csv', na_values=[' '], names=['dt', 'AverageTemperature', 'City', 'Country'])
+"""
+
 Aachen = rd.loc[rd['City'] == 'Aachen']
 
+Aachen["Date"] = pd.to_datetime(Aachen["Date"])
 
-#rd.plot(x='Date', y='AvgTemp', style='o')
-#plt.show()
-
-rd["Date"] = pd.to_datetime(rd["Date"])
-
-rd["day"] = rd['Date'].map(lambda x: x.day)
-rd["month"] = rd['Date'].map(lambda x: x.month)
-rd["year"] = rd['Date'].map(lambda x: x.year)
+Aachen["day"] = Aachen['Date'].map(lambda x: x.day)
+Aachen["month"] = Aachen['Date'].map(lambda x: x.month)
+Aachen["year"] = Aachen['Date'].map(lambda x: x.year)
 
 
+def season_finder(month):
 
-def get_season(rd['month']):
-    for x in rd['month']:
-        if x == 12 or x == 1 or x == 2:
-             return 1 # winter
-        elif x == 3 or x == 4 or x == 5:
-             return 2 # spring
-        elif x == 6 or x == 7 or x == 8:
-             return 3 # summer
-        elif x == 9 or x == 10 or x == 11:
-             return 4 # autumn
+    season = []
+    for x in month:
+        if x == 1 or x == 2 or x == 3:
+            season.append("1")
+        elif x == 4 or x == 5 or x == 6:
+            season.append("2")
+        elif x == 7 or x == 8 or x == 9:
+            season.append("3")
+        elif x == 10 or x == 11 or x == 12:
+            season.append("4")
 
-rd['season'] = get_season(rd['month'])
+    Aachen["season"] = season
 
-print(rd)
+season_finder(Aachen['month'])
+
+print(Aachen)
+
+Aachen_winter = Aachen.loc[Aachen['season'] == '4']
+#Aachen_winter.plot(x='Date', y='AvgTemp', style='.')
+
+Aachen_winter_mean = Aachen_winter.groupby(["year"]).mean()
+
+Aachen_winter_mean["year"]=Aachen_winter_mean.index
+Aachen_winter_mean.index = range(len(Aachen_winter_mean))
+Aachen_winter_mean.plot(x='year', y='AvgTemp', style='-.')
+
+#Aachen_winter_1950 = Aachen_winter.loc[Aachen_winter['year'] == range(1950,2000)]
+#Aachen_winter_1950.plot(x='Date', y='AvgTemp', style='o')
+
+plt.show()
+
+
+"""
+fig, axes = plt.subplots(nrows=2, ncols=2)
+
+def season_plotter(city_string, season_nr_string):
+
+    city_string = rd.loc[rd['City'] == city_string]
+
+    city_string["Date"] = pd.to_datetime(city_string["Date"])
+
+    city_string["day"] = city_string['Date'].map(lambda x: x.day)
+    city_string["month"] = city_string['Date'].map(lambda x: x.month)
+    city_string["year"] = city_string['Date'].map(lambda x: x.year)
+
+    def season_finder(month):
+
+        season = []
+        for x in month:
+            if x == 1 or x == 2 or x == 3:
+                season.append("1") #winter
+            elif x == 4 or x == 5 or x == 6:
+                season.append("2") #spring
+            elif x == 7 or x == 8 or x == 9:
+                season.append("3") #summer
+            elif x == 10 or x == 11 or x == 12:
+                season.append("4") #autumn
+
+        city_string["season"] = season
+
+    season_finder(city_string['month'])
+
+
+    season_dataframe = city_string.loc[city_string['season'] == season_nr_string]
+    #Aachen_winter.plot(x='Date', y='AvgTemp', style='.')
+
+    season_mean_dataframe = season_dataframe.groupby(["year"]).mean()
+
+    season_mean_dataframe["year"] = season_mean_dataframe.index
+    season_mean_dataframe.index = range(len(season_mean_dataframe))
+
+    if season_nr_string == "1":
+        season_mean_dataframe.plot(x='year', y='AvgTemp', style='r-.', ax=axes[0, 0])
+    elif season_nr_string == "2":
+        season_mean_dataframe.plot(x='year', y='AvgTemp', style='b-.', ax=axes[0, 1])
+    elif season_nr_string == "3":
+        season_mean_dataframe.plot(x='year', y='AvgTemp', style='g-.', ax=axes[1, 0])
+    elif season_nr_string == "4":
+        season_mean_dataframe.plot(x='year', y='AvgTemp', style='m-.', ax=axes[1, 1])
+
+
+
+season_string_list = ["1", "2", "3", "4"]
+
+for season_nr in season_string_list:
+    season_plotter("Aachen", season_nr)
+
+plt.show()
 
