@@ -46,8 +46,10 @@ with open('GlobalLandTemperaturesByCity.csv') as csvfile:
 
 """
 
+
 data = pd.read_csv('./DataSet/ByCityShort.csv')
 #print(data)
+
 
 df = pd.DataFrame(data, columns=['dt', 'AverageTemperature', "City", "Country"])
 rd = df.rename(columns={'dt': "Date", 'AverageTemperature': "AvgTemp", "City": 'City', "Country": 'Country'})
