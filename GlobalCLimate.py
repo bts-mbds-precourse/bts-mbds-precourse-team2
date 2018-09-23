@@ -26,8 +26,11 @@ print(unique_countries)
 
 #temperature data grouped by country and averaged to a yearly mean
 temp_stats = rd.groupby(['Country','year'])['AvgTemp'].describe()
-temp_stats["year"] = temp_stats.index
+
+temp_stats['year', 'Country']=temp_stats.index
 temp_stats.index = range(len(temp_stats))
+
+print(temp_stats)
 
 print(temp_stats)
 
@@ -53,5 +56,4 @@ for c in temp_stats(Country):
         temp_stats.plot(x='year', y='AvgTemp', style='p-.', ax=axes[2, 1])
 
 plt.show()
-
 
