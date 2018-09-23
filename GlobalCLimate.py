@@ -4,105 +4,54 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-"""
-with open('./DataSet/GlobalLandTemperaturesByCity.csv') as csvfile:
 
-
-file = open('GlobalLandTemperaturesByCity.csv', 'r')
-#This is a testing comment...
-with open('GlobalLandTemperaturesByCity.csv') as csvfile:
-    sniffer=csv.Sniffer()
-    dialect=sniffer.sniff(csvfile.read(2000))
-    readCSV = csv.reader(csvfile,delimiter=',', quoting=csv.QUOTE_NONE)
-    dt = []
-    AverageTemperature = []
-    AverageTemperatureUncertainty = []
-    City = []
-    Country = []
-    Latitude = []
-    Longitude = []
-    i=0
-    for row in readCSV:
-        i+=1
-        date = row[0]
-        print(date)
-        temperaturamedia = row[1]
-        temperaturamedianoexacta = row[2]
-        ciudad = row[3]
-        pais= row[4]
-        latitud = row[5]
-        longitud = row[6]
-
-        dt.append(date)
-        AverageTemperature.append(temperaturamedia)
-        AverageTemperatureUncertainty.append(temperaturamedianoexacta)
-        City.append(ciudad)
-        Country.append(pais)
-        Latitude.append(latitud)
-        Longitude.append(longitud)
-
-    print(dt)
-
-
-"""
-
-data = pd.read_csv('./DataSet/ByCityShort.csv')
+data = pd.read_csv('.\DataSet\ByCityShort.csv')
 # print(data)
 
 df = pd.DataFrame(data, columns=['dt', 'AverageTemperature', "City", "Country"])
 rd = df.rename(columns={'dt': "Date", 'AverageTemperature': "AvgTemp", "City": 'City', "Country": 'Country'})
 # print(df)
 
-# df = pd.read_csv('.\DataSet\GlobalLandTemperaturesByCity.csv', na_values=[' '], names=['dt', 'AverageTemperature', 'City', 'Country'])
-Aachen = rd.loc[rd['City'] == 'Aachen']
+
+rd["Date"] = pd.to_datetime(rd["Date"])
+
+rd["day"] = rd['Date'].map(lambda x: x.day)
+rd["month"] = rd['Date'].map(lambda x: x.month)
+rd["year"] = rd['Date'].map(lambda x: x.year)
+
+#to create a list of unique countries in rd
+unique_countries = rd.Country.unique()
+print(unique_countries)
 
 
-#rd.plot(x='Date', y='AvgTemp', style='o')
-#plt.show()
+#temperature data grouped by country and averaged to a yearly mean
+temp_stats = rd.groupby(['Country','year'])['AvgTemp'].describe()
+temp_stats["year"] = temp_stats.index
+temp_stats.index = range(len(temp_stats))
 
-Aachen["Date"] = pd.to_datetime(Aachen["Date"])
+print(temp_stats)
 
-Aachen["day"] = Aachen['Date'].map(lambda x: x.day)
-Aachen["month"] = Aachen['Date'].map(lambda x: x.month)
-Aachen["year"] = Aachen['Date'].map(lambda x: x.year)
+#trying to see what happens when plot all data
+temp_stats.plot(x='year', y='AvgTemp', style='-.')
+plt.show()
 
+#attempt to plot each country in a different quadrant
+fig, axes = plt.subplots(nrows=3, ncols=2)
 
-def season_finder(month):
-
-    season = []
-    for x in month:
-        if x == 1 or x == 2 or x == 3:
-            season.append("1")
-        elif x == 4 or x == 5 or x == 6:
-            season.append("2")
-        elif x == 7 or x == 8 or x == 9:
-            season.append("3")
-        elif x == 10 or x == 11 or x == 12:
-            season.append("4")
-
-    Aachen["season"] = season
-
-season_finder(Aachen['month'])
-
-Aachen_winter = Aachen.loc[Aachen['season'] == '1']
-#Aachen_winter.plot(x='Date', y='AvgTemp', style='.')
-
-Aachen_winter_mean = Aachen_winter.groupby(["year"]).mean()
-
-Aachen_winter_mean["year"]=Aachen_winter_mean.index
-Aachen_winter_mean.plot(x='year', y='AvgTemp', style='.')
-Aachen_winter_mean.index = range(len(Aachen_winter_mean))
-
-
-
-print(Aachen_winter_mean)
-
-
-#Aachen_winter_1950 = Aachen_winter.loc[Aachen_winter['year'] == range(1950,2000)]
-#Aachen_winter_1950.plot(x='Date', y='AvgTemp', style='o')
+for c in temp_stats(Country):
+    if c == "Denmark":
+        temp_stats.plot(x='year', y='AvgTemp', style='r-.', ax=axes[0, 0])
+    elif c == "Turkey":
+        temp_stats.plot(x='year', y='AvgTemp', style='b-.', ax=axes[0, 1])
+    elif c == "Kazakhstan":
+        temp_stats.plot(x='year', y='AvgTemp', style='g-.', ax=axes[1, 0])
+    elif c == "China":
+        temp_stats.plot(x='year', y='AvgTemp', style='m-.', ax=axes[1, 1])
+    elif c == "Spain":
+        temp_stats.plot(x='year', y='AvgTemp', style='y-.', ax=axes[2, 0])
+    elif c == "Germany":
+        temp_stats.plot(x='year', y='AvgTemp', style='p-.', ax=axes[2, 1])
 
 plt.show()
 
-
-#print(rd)
 
