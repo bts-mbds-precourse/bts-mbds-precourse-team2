@@ -17,11 +17,12 @@ rd["Date"] = pd.to_datetime(rd["Date"])
 rd["day"] = rd['Date'].map(lambda x: x.day)
 rd["month"] = rd['Date'].map(lambda x: x.month)
 rd["year"] = rd['Date'].map(lambda x: x.year)
-
+rd = rd.loc[rd['year'] > 1850]
 
 #to create a list of unique countries in rd
 unique_countries = rd.Country.unique()
 print(unique_countries)
+
 
 #temperature data grouped by country and averaged to a yearly mean
 temp_stats = rd.groupby(['Country', 'year'])['AvgTemp'].describe()
@@ -29,8 +30,10 @@ temp_stats.reset_index(inplace=True)
 temp_stats = pd.DataFrame(temp_stats, columns=['Country', 'year', "mean"])
 print(temp_stats)
 
+
+
 #attempt to plot each country in a different quadrant
-fig, axes = plt.subplots(nrows=1, ncols=1)
+#fig, axes = plt.subplots(nrows=1, ncols=1)
 
 
 Denmark = temp_stats.loc[temp_stats['Country'] == 'Denmark']
@@ -41,18 +44,25 @@ Spain = temp_stats.loc[temp_stats['Country'] == 'Spain']
 Germany = temp_stats.loc[temp_stats['Country'] == 'Germany']
 
 """
-plt.plot('year', 'mean', data = Denmark)
-plt.plot('year', 'mean', data = Turkey)
-plt.plot('year', 'mean', data = Kazakhstan)
-plt.plot('year', 'mean', data = China)
-plt.plot('year', 'mean', data = Spain)
-plt.plot('year', 'mean', data = Germany)
+plt.plot('year', 'mean', data = Denmark, linewidth=0.7)
+plt.plot('year', 'mean', data = Turkey, linewidth=0.7)
+plt.plot('year', 'mean', data = Kazakhstan, linewidth=0.7)
+plt.plot('year', 'mean', data = China, linewidth=0.7)
+plt.plot('year', 'mean', data = Spain, linewidth=0.7)
+plt.plot('year', 'mean', data = Germany, linewidth=0.7)
+plt.xlabel("Year")
+plt.ylabel("Average Temperature")
+plt.legend(('Denmark', 'Turkey', 'Kazakhstan', 'China', 'Spain', 'Germany'))
+plt.title('Average Country Temperature 1850 - 2013')
 plt.show()
-"""
 
-sns.lineplot(x = 'year', y = 'mean', data = Denmark)
-sns.lineplot('year', 'mean', data = Turkey)
-sns.lineplot('year', 'mean', data = Kazakhstan)
-sns.lineplot('year', 'mean', data = China)
-sns.lineplot('year', 'mean', data = Spain)
-sns.lineplot('year', 'mean', data = Germany)
+
+sns.barplot(x = 'year', y = 'mean', data = Denmark)
+sns.barplot(x = 'year', y = 'mean', data = Turkey)
+sns.barplot(x = 'year', y = 'mean', data = Kazakhstan)
+sns.barplot(x = 'year', y = 'mean', data = China)
+sns.barplot(x = 'year', y = 'mean', data = Spain)
+sns.barplot(x = 'year', y = 'mean', data = Germany)
+"""
+sns.boxplot(x="year", y="mean", data=Denmark)
+plt.show()
