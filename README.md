@@ -13,7 +13,10 @@ Welcome to team 2's README for the pre-course project. Allison, David and Christ
 
 # Project Description / Abstract
 
-Discussions around climate change have become increasingly frequent and urgent across the globe.  While there are groups of people (including politicians) who are sceptical of climate change, a data-driven approach reveals that there is no doubting that we are in an era of global warming. This dataset has given us an opportunity to apply our learnings from this course to a topic that is very relevant in our lives, and to uncover firsthand the realities of climate change. Using this dataset we explored XXXXXXX COMPLETE THIS SENTENCE LAST, ONCE WE HAVE A BETTER SENSE OF OUR ANALYSIS xxxxx.
+Discussions around climate change have become increasingly frequent and urgent across the globe.  While there are groups of people (including politicians) who are sceptical of climate change, a data-driven approach reveals that there is no doubting that we are in an era of global warming. This dataset has given us an opportunity to apply our learnings from this course to a topic that is very relevant in our lives, and to uncover firsthand the realities of climate change. Using this dataset we invesigated six key countries: United States, China, India, Spain, Nigeria and Venezuela.  We chose these countries for diversity in industrialisation, climate and culture, while also ensuring that the sample set was entirely Northern Hemisphere. Using the dataf from these countries we investigated:
+1. The realities of global warming, ie. is it really happening? 
+2. What is the relationship between industrialisation and warming? Can we see differences across countries?
+3. How has warming impacted climate at a season level? Are some seasons warming/cooling in a different way to other seasons? 
 
 # Dataset
 
@@ -32,27 +35,8 @@ The raw data comes from the Berkeley Earth data page.
 
 # Files and usage
 
-XXXXX UPDATE THIS LATER XXXXX
+There are three different python documents available: Christian's, David's and Allison's.  These all produce different analysis and results and were all contributors to the final report. These can be accessed from the respective branches. 
 
-You should explain all the files that you include, as well as how to use them.
-
-For example
-
-    main.py: This file contains the core of the project.
-    plot_graphs.py: This file contains functions that graph data into different formats
-    ...
-    ...
-**Usage**: Run the following command line into your terminal:
-
-    python main.py
-    
-    
-# Examples
-
-XXXXX UPDATE THIS LATER XXXXX
-
-If convenient, show some examples of the results you obtained during the project. 
-    
     
 # References
 
